@@ -18,9 +18,14 @@ jobs:
         - name: Test
           run: dotnet test
 
+        # View Working Directory Data
+        - name: List Working Directory
+          working-directory: ECommerce
+          run: ls -R
+
         # Generate the website
         - name: Publish
-          working-directory: ECommerce
+          
           run: dotnet publish --configuration Release
 
         # Publish the website
