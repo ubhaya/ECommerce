@@ -14,14 +14,14 @@ jobs:
           with:
             dotnet-version: 3.1.x
 
-        # Run tests
-        - name: Test
-          run: dotnet test
+        # # Run tests
+        # - name: Test
+        #   run: dotnet test
 
         # View Working Directory Data
         - name: List Working Directory
-          working-directory: ECommerce
           run: pwd
+          run: ls -R
 
         # # Generate the website
         # - name: Publish
