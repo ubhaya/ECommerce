@@ -20,8 +20,7 @@ jobs:
 
         # View Working Directory Data
         - name: List Working Directory
-          run: pwd
-          run: ls -R
+          run: pwd && ls -R
 
         # # Generate the website
         # - name: Publish
