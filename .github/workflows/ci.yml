@@ -16,6 +16,7 @@ jobs:
 
         # Run tests
         - name: Test
+          working-directory: ECommerce
           run: dotnet test
 
         # Generate the website
