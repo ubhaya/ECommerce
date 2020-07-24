@@ -20,7 +20,7 @@ jobs:
 
         # View Working Directory Data
         - name: List Working Directory
-          working-derectory: ECommerce/Client
+          working-directory: ECommerce/Client
           run: pwd && ls -R
 
         # # Generate the website
