@@ -8,11 +8,11 @@ jobs:
         # Checkout the code
         - uses: actions/checkout@v2
 
-        # Install .NET Core SDK
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: 3.1.x
+        # # Install .NET Core SDK
+        # - name: Setup .NET Core
+        #   uses: actions/setup-dotnet@v1
+        #   with:
+        #     dotnet-version: 3.1.x
 
         # # Run tests
         # - name: Test
@@ -20,6 +20,7 @@ jobs:
 
         # View Working Directory Data
         - name: List Working Directory
+          working-derectory: ECommerce/Client
           run: pwd && ls -R
 
         # # Generate the website
