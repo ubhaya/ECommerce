@@ -1,0 +1,49 @@
+﻿@page "/"
+@*<h1>Hello, world!</h1>
+
+    Welcome to your new app.
+
+    <SurveyPrompt Title="How is Blazor working for you?" />*@
+
+<BSCarousel NumberOfItems="@items.Count" Fade="true">
+    <BSCarouselIndicators NumberOfItems="@items.Count" />
+    <div class="carousel-inner">
+        @foreach (var item in items)
+        {
+            <BSCarouselItem Src="@item.Source" Alt="@item.Alt">
+                <BSCarouselCaption CaptionText="@item.Caption" HeaderText="@item.Header" />
+            </BSCarouselItem>
+        }
+        <BSCarouselControl CarouselDirection="CarouselDirection.Previous" NumberOfItems="@items.Count"/>
+        <BSCarouselControl CarouselDirection="CarouselDirection.Next" NumberOfItems="@items.Count"/>
+    </div>
+</BSCarousel>
+
+@code{
+
+    IList<Item> items = new List<Item>
+{
+        new Item
+        {
+            Source="/Assets/1.png",
+            Alt = "First Slide",
+            Caption = "Slide 1",
+            Header = "Slide 1 Header"
+        },
+        new Item
+        {
+            Source="/Assets/2.png",
+            Alt = "Second Slide",
+            Caption = "Slide 2",
+            Header = "Slide 2 Header"
+        },
+    };
+
+    class Item
+    {
+        public string Source { get; set; }
+        public string Alt { get; set; }
+        public string Caption { get; set; }
+        public string Header { get; set; }
+    }
+}

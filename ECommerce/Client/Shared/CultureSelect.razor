@@ -1,0 +1,42 @@
+﻿@using System.Globalization
+@using ECommerce.Client.Extension
+ 
+@inject IJSRuntime js
+@inject NavigationManager Navigation
+<div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <span class="oi oi-globe" for="inputCulture"></span>
+            </span>
+        </div>
+        <select @bind="Culture" class="custom-select" id="inputCulture">
+            @foreach (var culture in supportedCultures)
+            {
+                <option value="@culture">@culture.DisplayName</option>
+            }
+        </select>
+    </div>
+</div>
+
+@code {
+    CultureInfo[] supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("fr-FR")
+    };
+
+    CultureInfo Culture
+    {
+        get => CultureInfo.CurrentCulture;
+        set
+        {
+            if (CultureInfo.CurrentCulture != value)
+            {
+                js.SetBlazorCulture(value);
+
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+            }
+        }
+    }
+}
