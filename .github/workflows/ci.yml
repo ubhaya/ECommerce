@@ -25,9 +25,7 @@ jobs:
 
         # Generate the website
         - name: Publish
-          run: |
-            cp wwwroot/index.html wwwwroot/404.html
-            dotnet publish --configuration Release
+          run: dotnet publish --configuration Release
 
         # Publish the website
         - name: GitHub Pages action
