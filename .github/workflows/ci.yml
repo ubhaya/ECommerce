@@ -19,26 +19,26 @@ jobs:
           run: dotnet test
 
         # View Working Directory Data
-        # - name: List Working Directory
-        #   working-directory: ECommerce
-        #   run: ls -R
-
-        # Generate the website
-        - name: Publish
+        - name: List Working Directory
           working-directory: ECommerce
-          run: dotnet publish ./Server/ECommerce.Server.csproj --configuration Release
+          run: pwd
 
-        # Publish the website
-        - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
-          with:
-            github_token: ${{ secrets.PUBLISH_TOKEN }}
-            publish_branch: gh-pages
-            working-directory: ECommerce
-            publish_dir: ./ECommerce/Server/bin/Release/netstandard2.1/publish/wwwroot
-            allow_empty_commit: false
-            keep_files: false
-            force_orphan: true
-            # TODO uncomment the following line if you have a custom domain name
-            # cname: demo.meziantou.net
+        # # Generate the website
+        # - name: Publish
+        #   working-directory: ECommerce
+        #   run: dotnet publish ./Server/ECommerce.Server.csproj --configuration Release
+
+        # # Publish the website
+        # - name: GitHub Pages action
+        #   if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
+        #   uses: peaceiris/actions-gh-pages@v3.6.1
+        #   with:
+        #     github_token: ${{ secrets.PUBLISH_TOKEN }}
+        #     publish_branch: gh-pages
+        #     working-directory: ECommerce
+        #     publish_dir: ./ECommerce/Server/bin/Release/netstandard2.1/publish/wwwroot
+        #     allow_empty_commit: false
+        #     keep_files: false
+        #     force_orphan: true
+        #     # TODO uncomment the following line if you have a custom domain name
+        #     # cname: demo.meziantou.net
