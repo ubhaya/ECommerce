@@ -20,7 +20,7 @@ jobs:
 
         # Generate the website
         - name: Publish
-          run: dotnet publish ./ECommerce/Server/ECommerce.Server.csproj --configuration Release
+          run: dotnet publish ./Server/ECommerce.Server.csproj --configuration Release
 
         # Publish the website
         - name: GitHub Pages action
