@@ -80,9 +80,11 @@ namespace ECommerce.Server.Areas.Identity.Pages.Account
             {
                 var loginUser = await _userManager.FindByEmailAsync(Input.Email);
 
-                if (loginUser==null)
+                if (loginUser == null)
+                {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-
+                    return Page();
+                }
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(loginUser, Input.Password, Input.RememberMe, lockoutOnFailure: false);
