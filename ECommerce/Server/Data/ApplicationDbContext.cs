@@ -1,4 +1,5 @@
 ﻿using ECommerce.Server.Models;
+using ECommerce.Shared.Models;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -17,5 +18,7 @@ namespace ECommerce.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Test> Tests { get; set; }
     }
 }

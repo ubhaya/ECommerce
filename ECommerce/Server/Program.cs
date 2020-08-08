@@ -43,22 +43,32 @@ namespace ECommerce.Server
                     args = args.Except(new[] { "/seed" }).ToArray();
 
                 var host = CreateHostBuilder(args).Build();
+                var config = host.Services.GetRequiredService<IConfiguration>();
+                var connectionString = config.GetConnectionString("DefaultConnection");
+
+                var _env = host.Services.GetService<IWebHostEnvironment>();
+                
+
+                if (!_env.IsDevelopment())
+                    seed = true;
 
                 if (seed)
                 {
                     Log.Information("Seeding database...");
-                    var config = host.Services.GetRequiredService<IConfiguration>();
-                    var connectionString = config.GetConnectionString("DefaultConnection");
-                    var defaultPassword = config.GetValue<string>("DefaultPassword");
+                    
+                    
+                    //var defaultPassword = config.GetValue<string>("DefaultPassword");
+                    var defaultPassword = "Test@123";
                     if (string.IsNullOrEmpty(defaultPassword))
                     {
-
+                        Log.Fatal("Password is empty");
                     }
                     SeedData.EnsureSeedData(connectionString, defaultPassword).Wait();
                     Log.Information("Done seeding database.");
                 }
 
                 Log.Information("Starting host...");
+                Log.Information($"Connection string is {connectionString}");
                 host.Run();
             }
             catch (Exception ex)

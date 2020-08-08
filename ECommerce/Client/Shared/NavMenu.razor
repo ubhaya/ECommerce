@@ -1,39 +1,71 @@
 ﻿@inject IStringLocalizer<NavMenu> localizer
-<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">ECommerce</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+@*<div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">ECommerce</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>*@
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
+@*<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="icon"><span class="oi oi-home" aria-hidden="true"></span></span>
+                    <span class="title">@localizer["Home"]</span>
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>
+        </ul>
+    </div>*@
+
+<div class="navigation @activeCssClass">
+    <ul claass="nav">
+        <li class="nav-item">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> @localizer["Home"]
+                <span class="icon"><span class="oi oi-home" aria-hidden="true"></span></span>
+                <span class="title">@localizer["Home"]</span>
             </NavLink>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                <span class="icon"><span class="oi oi-plus" aria-hidden="true"></span></span>
+                <span class="title">Counter</span>
             </NavLink>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                <span class="icon"><span class="oi oi-list-rich" aria-hidden="true"></span></span>
+                <span class="title">Fetch data</span>
             </NavLink>
         </li>
     </ul>
+    <div class="culture">
+        <CultureSelect />
+    </div>
 </div>
 
-<div >
-    <CultureSelect/>
-</div>
+@*<div>
+        <CultureSelect />
+    </div>*@
 
 @code {
+    [Parameter]
+    public bool ToggleMenu { get; set; } = false;
+
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private string activeCssClass => ToggleMenu ? "active" : null;
 
     private void ToggleNavMenu()
     {

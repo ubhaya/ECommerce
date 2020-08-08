@@ -1,26 +1,37 @@
 ﻿@inherits LayoutComponentBase
 @inject IBootstrapCss BootstrapCss
 
-<div class="sidebar">
+@*<div class="sidebar">
     <NavMenu />
-</div>
+</div>*@
+<NavMenu ToggleMenu="toggleMenu"/>
+
+<div class="toggle @activeCssClass" @onclick="ToggleMenu"></div>
 
 <div class="main">
-    <div class="top-row px-4 auth">
+    @*<div class="top-row px-4 auth">
         <LoginDisplay />
         <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
+    </div>*@
 
     <div class="content px-4">
         @Body
     </div>
 </div>
 
+
 @code{
 
     protected async override Task OnInitializedAsync()
     {
         await BootstrapCss.SetBootstrapCss("4.5.0");
+    }
+
+    protected bool toggleMenu = false;
+    private string activeCssClass => toggleMenu ? "active" : null;
+    protected void ToggleMenu()
+    {
+        toggleMenu = !toggleMenu;
     }
 
 }
