@@ -105,7 +105,7 @@ app {
             }*/
 
 .content {
-    margin-top:60px;
+    margin-top: 60px;
     padding-top: 1.1rem;
 }
 
@@ -180,37 +180,67 @@ app {
                 background: #ea1d63;
             }
 
-            .navigation ul li a {
+                .navigation ul li:hover:first-child {
+                    background: inherit;
+                }
+
+            .navigation ul li div {
                 position: relative;
                 display: block;
                 width: 100%;
                 display: flex;
-                text-decoration: none;
-                color: #d7d7d7;
+                height: 60px;
+                align-items: center;
             }
 
-                .navigation ul li a .icon {
+                .navigation ul li div img {
                     position: relative;
                     display: block;
-                    min-width: 60px;
-                    height: 60px;
-                    line-height: 60px;
                     text-align: center;
+                    height: 24px;
                 }
 
-                    .navigation ul li a .icon .oi {
-                        font-size: 24px;
-                    }
+    .navigation:hover ul li div,
+    .navigation.active ul li div {
+        height:120px;
+    }
 
-                .navigation ul li a .title {
-                    position: relative;
-                    display: block;
-                    padding: 0 10px;
-                    height: 60px;
-                    line-height: 60px;
-                    text-align: start;
-                    white-space: nowrap;
-                }
+    .navigation:hover ul li div img,
+    .navigation.active ul li div img {
+        height: 100px;
+    }
+
+    .navigation ul li a {
+        position: relative;
+        display: block;
+        width: 100%;
+        display: flex;
+        text-decoration: none;
+        color: #d7d7d7;
+    }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: block;
+            min-width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+            .navigation ul li a .icon .oi {
+                font-size: 24px;
+            }
+
+        .navigation ul li a .title {
+            position: relative;
+            display: block;
+            padding: 0 10px;
+            height: 60px;
+            line-height: 60px;
+            text-align: start;
+            white-space: nowrap;
+        }
 
 .toggle {
     position: absolute;
@@ -225,23 +255,30 @@ app {
     .toggle:hover {
         background: #ea1d63;
     }
+
     .toggle:before {
         content: '\f0c9';
-        font-family:fontAwesome;
-        position:absolute;
-        width:100%;
-        height:100%;
-        line-height:60px;
-        text-align:center;
-        font-size:24px;
-        color:#fff;
+        font-family: fontAwesome;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        line-height: 60px;
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
     }
-    .toggle.active{
-        z-index:11;
+
+    .toggle.active {
+        z-index: 11;
     }
-    .toggle.active:before {
-        content: '\f00d';
-    }
+
+        .toggle.active:before {
+            content: '\f00d';
+        }
+
+.main.active {
+    margin-left: 300px;
+}
 
 .culture {
     position: absolute;
@@ -261,16 +298,23 @@ app {
         margin-left: 0;
     }
 
-    .navigation{
-        left:-60px;
+    .navigation {
+        left: -60px;
+        width: 0px;
     }
-    .navigation.active {
-        left: 0px;
-        width:100%;
-    }
+
+        .navigation.active {
+            left: 0px;
+            width: 100%;
+        }
+
     .main {
         margin-left: 0;
     }
+
+        .main.active {
+            margin-left: 0;
+        }
 }
 
 @media (min-width: 768px) {

@@ -1,4 +1,9 @@
-﻿@inject IStringLocalizer<NavMenu> localizer
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject IStringLocalizer<NavMenu> localizer
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
 @*<div class="top-row pl-4 navbar navbar-dark">
         <a class="navbar-brand" href="">ECommerce</a>
         <button class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -28,7 +33,50 @@
     </div>*@
 
 <div class="navigation @activeCssClass">
+
     <ul claass="nav">
+        <li>
+            <div class="justify-content-center">
+                <AuthorizeView>
+                    <NotAuthorized>
+                        <img src="Assets/profile.png" asp-append-version="true" alt="Profile" />
+                    </NotAuthorized>
+                    <Authorized>
+                        @*<img src="@context.User.Identity" asp-append-version="true" alt="Profile" />*@
+                    </Authorized>
+                </AuthorizeView>
+            </div>
+        </li>
+        <li>
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink class="nav-link " href="authentication/profile">
+                        <span class="icon"><span class="oi oi-person"></span></span>
+                        <span class="title">@context.User.Identity.Name</span>
+                    </NavLink>
+                </Authorized>
+            </AuthorizeView>
+        </li>
+        <li>
+            <AuthorizeView>
+                <NotAuthorized>
+                    <a href="authentication/register">
+                        <span class="icon"><span class="oi oi-people"></span></span>
+                        <span class="title">Register</span>
+                    </a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </li>
+        <li>
+            <AuthorizeView>
+                <NotAuthorized>
+                    <a href="authentication/login">
+                        <span class="icon"><span class="oi oi-account-login"></span></span>
+                        <span class="title">Log in</span>
+                    </a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </li>
         <li class="nav-item">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="icon"><span class="oi oi-home" aria-hidden="true"></span></span>
@@ -46,6 +94,17 @@
                 <span class="icon"><span class="oi oi-list-rich" aria-hidden="true"></span></span>
                 <span class="title">Fetch data</span>
             </NavLink>
+        </li>
+        <li>
+            <AuthorizeView>
+                <Authorized>
+                    <a href="javascript:void(0)" @onclick="BeginSignOut">
+                        <span class="icon"><span class="oi oi-account-logout"></span></span>
+                        <span class="title">Log out</span>
+                    </a>
+                    @*<button class="nav-link" @onclick="BeginSignOut">Log out</button>*@
+                </Authorized>
+            </AuthorizeView>
         </li>
     </ul>
     <div class="culture">
@@ -70,5 +129,11 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
     }
 }
