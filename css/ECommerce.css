@@ -1,0 +1,14 @@
+﻿/*@import "bootstrap-4.5.0/scss/bootstrap.scss";*/
+.bod {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #fff; }
+
+.loader {
+  display: flex;
+  align-items: center; }
+
+.blazored-sub-menu-header {
+  color: #d6d5d5; }
