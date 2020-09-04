@@ -285,6 +285,40 @@ app {
     bottom: 0;
 }
 
+.input-group-text.icon{
+    min-width:60px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+}
+
+.input-group-text.icon .oi{
+    font-size:24px;
+}
+
+
+
+.custom-select.title {
+    display: none;
+}
+
+    .navigation:hover .custom-select.title,
+    .navigation.active .custom-select.title {
+        display: inline-block;
+    }
+
+.navigation:hover .input-group-text.icon,
+.navigation.active .input-group-text.icon {
+    min-width: unset;
+    height: unset;
+    line-height: unset;
+}
+
+    .navigation:hover .input-group-text.icon .oi,
+    .navigation.active .input-group-text.icon .oi {
+        font-size: unset;
+    }
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;

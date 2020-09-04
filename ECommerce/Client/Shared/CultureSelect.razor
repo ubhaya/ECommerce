@@ -6,11 +6,11 @@
 <div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text">
+            <span class="input-group-text icon">
                 <span class="oi oi-globe" for="inputCulture"></span>
             </span>
         </div>
-        <select @bind="Culture" class="custom-select" id="inputCulture">
+        <select @bind="Culture" class="custom-select title" id="inputCulture">
             @foreach (var culture in supportedCultures)
             {
                 <option value="@culture">@culture.DisplayName</option>

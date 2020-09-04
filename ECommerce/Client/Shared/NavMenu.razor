@@ -42,7 +42,7 @@
                         <img src="Assets/profile.png" asp-append-version="true" alt="Profile" />
                     </NotAuthorized>
                     <Authorized>
-                        @*<img src="@context.User.Identity" asp-append-version="true" alt="Profile" />*@
+                        <img src="@(context.User.Claims.First(x => x.Type == "picture").Value)" asp-append-version="true" alt="Profile" />
                     </Authorized>
                 </AuthorizeView>
             </div>

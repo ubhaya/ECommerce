@@ -8,5 +8,6 @@ namespace ECommerce.Server.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public string ProfilePicture { get; set; }
     }
 }

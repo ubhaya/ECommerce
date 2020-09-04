@@ -12,6 +12,9 @@ using Microsoft.JSInterop;
 using ECommerce.Client.Extension;
 using System.Globalization;
 using BlazorStrap;
+using ECommerce.Client.Repository;
+using ECommerce.Client.Services;
+using ECommerce.Client.Identity;
 
 namespace ECommerce.Client
 {
@@ -31,9 +34,15 @@ namespace ECommerce.Client
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ECommerce.ServerAPI"));
 
-            builder.Services.AddApiAuthorization();
+            builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccount>()
+                .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, CustomAccountFactory>();
+
+            builder.Services.AddScoped<IRepository, RepositoryService>();
+            builder.Services.AddScoped<GlobalVariable>();
+            
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-            //await builder.Build().RunAsync();
+            
+
 
             var host = builder.Build();
 

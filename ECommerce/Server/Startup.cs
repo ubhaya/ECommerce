@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using ECommerce.Server.Data;
 using ECommerce.Server.Models;
+using IdentityServer4.Services;
+using ECommerce.Server.Service;
 
 namespace ECommerce.Server
 {
@@ -42,6 +44,8 @@ namespace ECommerce.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            services.AddTransient<IProfileService, ProfileService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
